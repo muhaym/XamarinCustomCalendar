@@ -2,14 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/holder"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:background="#f3f3f3">
     <TextView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/dayTitle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_content"
         tools:text="Monday"
         android:contextClickable="false"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="#757575" />
 </LinearLayout>

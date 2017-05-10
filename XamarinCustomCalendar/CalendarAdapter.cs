@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Android;
 using Android.Content;
 using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -24,7 +25,6 @@ namespace XamarinCustomCalendar
 		private int mTitleHeight, mDayHeight;
 		private string[] mDays = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
 		private int[] mDaysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
 		public MonthAdapter(Context c, int month, int year, DisplayMetrics metrics)
 		{
 			mContext = c;
@@ -87,7 +87,7 @@ namespace XamarinCustomCalendar
 				mDaysNextMonth++;
 			}
 
-			mTitleHeight = 30;
+			mTitleHeight = 40;
 			int rows = (mDaysShown / 7);
 			mDayHeight = (mDisplayMetrics.HeightPixels - mTitleHeight
 					- (rows * 8) - getBarHeight()) / (rows - 1);
@@ -190,6 +190,25 @@ namespace XamarinCustomCalendar
 			return date;
 		}
 
+
+		void SetBackgroundColor(Color color, LinearLayout container)
+		{
+			if (container != null)
+			{
+				GradientDrawable bgShape = (GradientDrawable)container.Background;
+				bgShape.SetColor(color);
+				container.Background = bgShape;
+			}
+		}
+
+		void SetTextColor(Color color, TextView text)
+		{
+			if (text != null)
+			{
+				text.SetTextColor(color);
+			}
+		}
+
 		override public View GetView(int position, View convertView, ViewGroup parent)
 		{
 			View dateView = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.calendar_item, parent, false);
@@ -197,38 +216,38 @@ namespace XamarinCustomCalendar
 			TextView date = dateView.FindViewById<TextView>(Resource.Id.date);
 			TextView status = dateView.FindViewById<TextView>(Resource.Id.date_icon);
 			LinearLayout container = dateView.FindViewById<LinearLayout>(Resource.Id.holder);
-			//TextView view = new TextView(mContext);
-			//view.Gravity = GravityFlags.CenterHorizontal | GravityFlags.CenterHorizontal;
+			TextView dateHeader = headerView.FindViewById<TextView>(Resource.Id.dayTitle);
 			date.Text = mItems[position];
-			date.SetTextColor(Color.Black);
-
-			int[] datez = getDate(position);
-			if (datez != null)
+			dateHeader.Text = mItems[position];
+			SetBackgroundColor(Color.Rgb(243, 243, 243), container);
+			int[] dateArray = getDate(position);
+			if (dateArray != null)
 			{
 				date.SetHeight(mDayHeight);
-				if (datez[1] != mMonth)
+				if (dateArray[1] != mMonth)
 				{
-					// previous or next month
-					container.SetBackgroundColor(Color.Rgb(234, 234, 250));
+					//If the date recieved is of previous or next month
+					SetTextColor(Color.Rgb(189, 189, 189), date);
 				}
 				else
 				{
-					// current month
-					container.SetBackgroundColor(Color.Rgb(244, 244, 244));
-					if (isToday(datez[0], datez[1], datez[2]))
+					// If the date received is of current month
+					SetTextColor(Color.Rgb(0, 171, 214), date);
+					if (isToday(dateArray[0], dateArray[1], dateArray[2]))
 					{
-						date.SetTextColor(Color.Red);
+						SetBackgroundColor(Color.Rgb(189, 189, 189), container);
 					}
 				}
+				return dateView;
 			}
 			else
 			{
-				container.SetBackgroundColor(Color.Argb(100, 10, 80, 255));
-				var param = container.LayoutParameters;
+				var param = dateHeader.LayoutParameters;
 				param.Height = mTitleHeight;
-				container.LayoutParameters = param;
+				dateHeader.LayoutParameters = param;
+				return headerView;
 			}
-			return row;
+
 		}
 
 		public override int Count

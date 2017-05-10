@@ -20,7 +20,7 @@ namespace XamarinCustomCalendar
 			GridView gridview = FindViewById<GridView>(Resource.Id.gridview);
 			mCalendar = DateTime.Now;
 			mToday[0] = mCalendar.Day;
-			mToday[1] = mCalendar.Month + 1;
+			mToday[1] = mCalendar.Month;
 			mToday[2] = mCalendar.Year;
 
 			// get display metrics
