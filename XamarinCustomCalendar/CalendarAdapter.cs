@@ -87,10 +87,10 @@ namespace XamarinCustomCalendar
 				mDaysNextMonth++;
 			}
 
-			mTitleHeight = 40;
-			int rows = (mDaysShown / 7);
-			mDayHeight = (mDisplayMetrics.HeightPixels - mTitleHeight
-					- (rows * 8) - getBarHeight()) / (rows - 1);
+			//mTitleHeight = 40;
+			//int rows = (mDaysShown / 7);
+			//mDayHeight = (mDisplayMetrics.HeightPixels - mTitleHeight
+					//- (rows * 8) - getBarHeight()) / (rows - 1);
 		}
 
 
@@ -223,7 +223,7 @@ namespace XamarinCustomCalendar
 			int[] dateArray = getDate(position);
 			if (dateArray != null)
 			{
-				date.SetHeight(mDayHeight);
+				//date.SetHeight(mDayHeight);
 				if (dateArray[1] != mMonth)
 				{
 					//If the date recieved is of previous or next month
@@ -242,9 +242,9 @@ namespace XamarinCustomCalendar
 			}
 			else
 			{
-				var param = dateHeader.LayoutParameters;
-				param.Height = mTitleHeight;
-				dateHeader.LayoutParameters = param;
+			//	var param = dateHeader.LayoutParameters;
+				//param.Height = mTitleHeight;
+				//dateHeader.LayoutParameters = param;
 				return headerView;
 			}
 

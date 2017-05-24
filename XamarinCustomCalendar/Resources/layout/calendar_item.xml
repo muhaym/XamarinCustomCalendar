@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/border">
+    android:background="@drawable/border"
+    android:gravity="center">
     <TextView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/date"
         android:layout_width="match_parent"
@@ -12,7 +13,8 @@
         android:textSize="16sp"
         tools:text="9"
         android:contextClickable="false"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
     <TextView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/date_icon"
         android:textSize="14sp"
@@ -20,5 +22,7 @@
         android:layout_height="wrap_content"
         android:visibility="visible"
         tools:text="Present"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp" />
 </LinearLayout>

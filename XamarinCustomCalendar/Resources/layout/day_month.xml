@@ -11,7 +11,7 @@
     <TextView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/dayTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_content"
+        android:layout_height="match_parent"
         tools:text="Monday"
         android:contextClickable="false"
         android:gravity="center"
